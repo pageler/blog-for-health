@@ -23,6 +23,8 @@ const connectDB = async () => {
 
 connectDB();
 
+app.use("/api/users", require("./routes/userRoutes"));
+
 app.listen(PORT, () =>
     console.info(`Server is running on port ${PORT}`.bgBlue.underline.bold)
 );
