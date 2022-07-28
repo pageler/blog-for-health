@@ -24,7 +24,7 @@ const getBlogById = async (req, res) => {
         if (!blog)
             return res.status(404).json([
                 {
-                    message: "Blog not found",
+                    message: "Blog not found.",
                     type: "error",
                 },
             ]);
@@ -50,7 +50,7 @@ const createBlog = async (req, res) => {
         if (!newBlog)
             return res
                 .status(400)
-                .json([{ message: "Couldn't create blog", type: "error" }]);
+                .json([{ message: "Couldn't create blog.", type: "error" }]);
 
         res.json(newBlog);
     } catch (error) {
@@ -82,7 +82,7 @@ const deleteBlog = async (req, res) => {
         });
         res.json({
             blogId: req.params.id,
-            toasts: [{ message: "Blog deleted", type: "success" }],
+            toasts: [{ message: "Blog deleted.", type: "success" }],
         });
     } catch (error) {
         console.error(`ERROR: ${error.message}`.bgRed.underline.bold);
