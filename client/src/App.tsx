@@ -1,13 +1,38 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import BlogDetail from "./pages/BlogDetail";
+import BlogList from "./pages/BlogList";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NewBlog from "./pages/NewBlog";
+import PrivateRoute from "./pages/PrivateRoute";
+import Profile from "./pages/Profile";
+import Register from "./pages/Register";
 
 function App() {
     return (
         <div>
-            <h1>App Component</h1>
-            <p>
-                This is the placeholder for the client while I work on the
-                server.
-            </p>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+
+                <Route path="/profile" element={<PrivateRoute />}>
+                    <Route path="/profile" element={<Profile />} />
+                </Route>
+
+                <Route path="/blogs" element={<PrivateRoute />}>
+                    <Route path="/blogs" element={<BlogList />} />
+                </Route>
+
+                <Route path="/blogs/:id" element={<PrivateRoute />}>
+                    <Route path="/blogs/:id" element={<BlogDetail />} />
+                </Route>
+
+                <Route path="/newblog" element={<PrivateRoute />}>
+                    <Route path="/newblog" element={<NewBlog />} />
+                </Route>
+            </Routes>
         </div>
     );
 }
