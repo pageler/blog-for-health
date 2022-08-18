@@ -130,9 +130,20 @@ const loginUser = async (req, res) => {
 // @access  Private
 const getProfile = async (req, res) => {
     try {
-        res.send("Get user profile");
+        const user = await User.findById(req.user.id)
+            .select("-password")
+            .select("-__v")
+            .select("-createdAt")
+            .select("-updatedAt");
+
+        if (!user)
+            return res
+                .status(404)
+                .json([{ message: "User does not exist", type: "error" }]);
+
+        res.json(user);
     } catch (error) {
-        console.error(`ERROR: ${error.message}`.bgRed.underline.bold);
+        console.error(`ERROR: ${err.message}`.bgRed.underline.bold);
         res.status(500).send("Server Error");
     }
 };
